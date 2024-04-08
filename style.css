@@ -1,0 +1,220 @@
+*{
+    margin: 0;
+    padding: 0;
+    
+}
+
+body{
+    background-color: rgb(0, 0, 0);
+    
+}
+
+/* .logo{
+    position: relative;
+    margin-top: 2vh;
+   margin-left: 90vh;
+background-image: url(/media/favicon-removebg-preview.png);
+    width: 50px;
+    height: 50px;
+    background-repeat: no-repeat;
+    background-size: cover;
+} */
+
+
+/* **************************************
+OPTIONAL: IF DAGHAN NA KAAAYO ELEMENTS
+***************************************** */
+
+
+/* #tree::-webkit-scrollbar,#inp::-webkit-scrollbar{
+    width: 5px;
+    background-color: lightgray;
+}
+
+#tree::-webkit-scrollbar-thumb,#inp::-webkit-scrollbar-thumb{
+    background-color: gray;
+    border-radius: 5px;
+}
+
+#tree::-webkit-scrollbar:horizontal,#inp::-webkit-scrollbar:horizontal{
+    height: 7px;
+}
+
+#tree::-webkit-scrollbar-thumb:hover,#inp::-webkit-scrollbar-thumb:hover{
+    background-color: rgb(83, 82, 82);
+} */
+
+
+.header{
+    margin-bottom: 50px;
+    font-family:'Courier New', Courier, monospace;
+ 
+    
+ }
+ .header h1 {
+    margin: 0 auto; /* This centers the element horizontally */
+    background: url(/media/favicon-removebg-preview.png) left/contain no-repeat;
+    width: 310px;
+    text-align: center;
+    color: limegreen;
+}
+
+
+.header p {
+    font-size: 18px;
+    margin-top: 10px;
+    color: #00ff26;
+    display: flex;
+    justify-content: center;
+    font-size: 20px ;
+  }
+  
+::placeholder{
+font-family: 'Courier New', Courier, monospace;
+font-weight: bolder;
+}
+.container{
+    position: absolute;
+    width: 80%;
+    left: 10%;
+    height: 80%;
+    top: 30px;
+}
+
+.container #inp{
+    position: relative;
+    background-color: burlywood;
+    border-radius: 30px;
+    width: 80%;
+    left: 10%;
+    height: 80px;
+    overflow: hidden;
+    resize: none;
+    font-size: x-large;
+    text-align: center;
+    border: 2px solid black;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight: bolder;
+    line-height: 360%; /* Center text vertically */
+}
+
+.container .findContainer{
+    position: relative;
+    width: 80%;
+    left: 10%;
+    text-align: center;
+
+}
+
+.numContainer{
+    width: 70px;
+    height: 70px;
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(0, 255, 217);
+    margin-right: 10px;
+    margin-top: 5px;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    font-weight: bolder;
+    font-size: 20px;
+}
+
+
+.container #tree{
+    position: relative;
+    width: 80%;
+    margin-top: 1%;
+    left: 10%;
+    height: 85%;
+    background-color: rgb(0, 0, 0);
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    font-size: 20px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: bolder;
+}
+
+.btn-container {
+    position: relative;
+    width: 80%;
+    left: 10%;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+}
+
+.btn, .btn-clear {
+    position: relative;
+    width: 100px;
+    height: 50px;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+    background-color: rgb(255, 255, 255);
+    color: black;
+    margin-left: 10px;
+    font-weight: bolder;
+    font-size: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /*Adding box-shadow for depth effect*/
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; /* Adding transition effects */
+}
+
+.btn:hover, .btn-clear:hover {
+    box-shadow: 0 5px 20px rgba(0, 255, 51, 0.705); /* Increase shadow on hover for more depth */
+    transform: translateY(-2px); /* Move button slightly up on hover */
+}
+
+.btn-clear{
+    display: none;
+}
+
+
+.gold{
+    animation: goldfill 1.5s infinite alternate;
+}
+.green{
+    animation: greenfill 1.5s infinite alternate;
+}
+
+
+
+@keyframes goldfill {
+    100%{
+        fill: rgb(255, 255, 255);
+        transform: scale(1.1);
+        filter: drop-shadow(0 0 10px rgb(255, 255, 255)); /* Add glowing effect */
+    }
+
+    50%{
+        fill: rgb(255, 255, 255);
+        transform: scale(1.2);
+        filter: drop-shadow(0 0 10px rgb(255, 255, 255)); /* Add glowing effect */
+    }
+
+
+
+    
+}
+
+@keyframes greenfill {
+    100%{
+        fill: rgb(0, 191, 255);
+        transform: scale(1.6);
+        filter: drop-shadow(0 0 10px rgb(0, 191, 255)); /* Add glowing effect */
+    }
+    
+}
+
+#pathDisplay{
+    color: antiquewhite;
+    font-family:'Courier New', Courier, monospace;
+    text-align: center;
+    font-weight: bold;
+    font-size: larger;
+    font-size: 30px;
+}
+
