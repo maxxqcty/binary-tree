@@ -6,12 +6,11 @@ function Node(value, left, right, parent = "", children = []) {
     this.children = children;
     this.isRight = null;
     this.isLeft = null;
-
 }
 
 function createTree(arr) {
     for (let i = 1; i < arr.length; i++) {
-        nodeDirection(arr[0], arr[i])
+        nodeDirection(arr[0], arr[i]);
     }
 
     createData(arr[0]);
@@ -24,14 +23,15 @@ function createTree(arr) {
 }
 
 function remove() {
-    let graph = document.querySelector('svg');
-    if (graph) { graph.parentElement.removeChild(graph) };
-
+    let graph = document.querySelector("svg");
+    if (graph) {
+        graph.parentElement.removeChild(graph);
+    }
 }
 
 function nodeDirection(root, node) {
-    let a = Number(node.value)
-    let b = Number(root.value)
+    let a = Number(node.value);
+    let b = Number(root.value);
     if (a < b) {
         if (root.left == null) {
             root.left = node;
@@ -42,63 +42,75 @@ function nodeDirection(root, node) {
     } else if (a > b) {
         if (root.right == null) {
             root.right = node;
-            node.isRight = true
+            node.isRight = true;
         } else {
             nodeDirection(root.right, node);
         }
     }
-
 }
 
 function createData(node) {
-
-    if (node == null) { return }
+    if (node == null) {
+        return;
+    }
 
     if (node.left) {
         node.children.push(node.left);
         node.left.parent = node;
-        if(!node.right){
-            let newNode = new Node("Empty",null,null)
-            newNode.isRight = true
+        if (!node.right) {
+            let newNode = new Node("Empty", null, null);
+            newNode.isRight = true;
             node.children.push(newNode);
-            newNode.parent = node            
+            newNode.parent = node;
         }
-
     }
 
     if (node.right) {
         node.children.push(node.right);
         node.right.parent = node;
-        if(!node.left){
-            let newNode = new Node("Empty",null,null)
-            newNode.isLeft = true
+        if (!node.left) {
+            let newNode = new Node("Empty", null, null);
+            newNode.isLeft = true;
             node.children.unshift(newNode);
-            newNode.parent = node
+            newNode.parent = node;
         }
     }
 
     createData(node.left);
     createData(node.right);
-
 }
 
 function createNodes(list) {
-    new_list = [];
+    let new_list = [];
 
     for (let i = 0; i < list.length; i++) {
-        if (list[i] == "") { continue }
-        new_list.push(new Node(list[i], null, null));
+        if (list[i] == "") {
+            continue;
+        }
 
+        let newNode = new Node(list[i], null, null);
+
+        let isDuplicate = false;
+        for (let j = 0; j < new_list.length; j++) {
+            if (new_list[j].value == newNode.value) {
+                isDuplicate = true;
+                break;
+            }
+        }
+        if (isDuplicate) {
+            list[i] = " ";
+        } else {
+            new_list.push(newNode);
+        }
     }
 
-    createTree(new_list)
+    createTree(new_list);
 
     if (new_list.length != 0) {
-        document.querySelector(".btn").disabled = false
+        document.querySelector(".btn").disabled = false;
     } else {
-        document.querySelector(".btn").disabled = true
-
+        document.querySelector(".btn").disabled = true;
     }
 
-    return new_list
+    return new_list;
 }
