@@ -1,4 +1,11 @@
-function Node(value, left, right, parent = "", children = []) {
+function Node(
+    value,
+    left = null,
+    right = null,
+    parent = "",
+    children = [],
+    height = 1,
+) {
     this.value = value;
     this.right = right;
     this.left = left;
@@ -6,47 +13,60 @@ function Node(value, left, right, parent = "", children = []) {
     this.children = children;
     this.isRight = null;
     this.isLeft = null;
+    this.height = height;
 }
 
 function createTree(arr) {
+    if (arr.length === 0) {
+        document.getElementById("inp").value = "";
+
+    };
+
+    let root = arr[0];
     for (let i = 1; i < arr.length; i++) {
-        nodeDirection(arr[0], arr[i]);
+        root = nodeDirection(root, arr[i]);
     }
 
-    createData(arr[0]);
+    createData(root);
     remove();
     try {
-        drawGraph(arr);
+        drawGraph([root]); // Pass the root to the drawGraph function
     } catch {
         console.log("No Input");
     }
 }
-
 function remove() {
     let graph = document.querySelector("svg");
     if (graph) {
         graph.parentElement.removeChild(graph);
     }
 }
-
 function nodeDirection(root, node) {
     let a = Number(node.value);
     let b = Number(root.value);
+
+    console.log(`Inserting node ${a} into tree with root ${b}`);
+
     if (a < b) {
         if (root.left == null) {
             root.left = node;
             node.isLeft = true;
         } else {
-            nodeDirection(root.left, node);
+            root.left = nodeDirection(root.left, node);
         }
     } else if (a > b) {
         if (root.right == null) {
             root.right = node;
             node.isRight = true;
         } else {
-            nodeDirection(root.right, node);
+            root.right = nodeDirection(root.right, node);
         }
     }
+
+    root = balance(root);
+
+    console.log(`root: ${root}`)
+    return root;
 }
 
 function createData(node) {
@@ -87,30 +107,9 @@ function createNodes(list) {
         if (list[i] == "") {
             continue;
         }
-
-        let newNode = new Node(list[i], null, null);
-
-        let isDuplicate = false;
-        for (let j = 0; j < new_list.length; j++) {
-            if (new_list[j].value == newNode.value) {
-                isDuplicate = true;
-                break;
-            }
-        }
-        if (isDuplicate) {
-            list[i] = " ";
-        } else {
-            new_list.push(newNode);
-        }
+        new_list.push(new Node(list[i], null, null));
     }
 
     createTree(new_list);
-
-    if (new_list.length != 0) {
-        document.querySelector(".btn").disabled = false;
-    } else {
-        document.querySelector(".btn").disabled = true;
-    }
-
     return new_list;
 }
