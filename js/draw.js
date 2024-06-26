@@ -43,22 +43,24 @@ function drawGraph(data) {
 
     let nodes = tree.nodes(root);
     let links = tree.links(nodes);
+// Calculate tree depth
+let maxDepth = 0;
+nodes.forEach(function (d) {
+if (d.depth > maxDepth) {
+maxDepth = d.depth;
+}
+});
 
-    let maxDepth = 0;
-    nodes.forEach(function (d) {
-        if (d.depth > maxDepth) {
-            maxDepth = d.depth;
-        }
-    });
-
-    let treeDepthDisplay = document.getElementById("treeDepthDisplay");
-    treeDepthDisplay.textContent = "Tree Depth: " + maxDepth;
-    if (maxDepth > 0) {
-        treeDepthDisplay.style.display = "block";
-    } else {
-        treeDepthDisplay.textContent = "";
-        treeDepthDisplay.style.display = "none";
-    }
+// Display tree depth
+let treeDepthDisplay = document.getElementById("treeDepthDisplay");
+treeDepthDisplay.textContent = "Tree Depth: " + maxDepth;
+if (maxDepth > 0) {
+treeDepthDisplay.textContent = "Tree Depth: " + maxDepth;
+treeDepthDisplay.style.display = "block"; // Show the display
+} else {
+treeDepthDisplay.textContent = ""; // Clear the content
+treeDepthDisplay.style.display = "none"; // Hide the display
+}
 
     nodes.forEach(function (d) {
         d.y = d.depth * 70;
@@ -90,6 +92,8 @@ function drawGraph(data) {
         .style("visibility", function (d) {
             return d.value == "Empty" ? "hidden" : "visible";
         })
+        .style("stroke","white")
+        .style("stroke-width","4px")
         .duration(1000)
         .ease("elastic");
 
@@ -125,9 +129,9 @@ function drawGraph(data) {
             return d.target.value == "Empty" ? "hidden" : "visible";
         })
         .attr("data-target", function (d) {
-            return d.target.value;
+            // Add this line
+            return d.target.value; // Add this line
         });
-
     pathT
         .transition()
         .delay(function (d, i) {

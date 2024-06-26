@@ -1,4 +1,5 @@
 * {
+    overflow: hidden;
     margin: 0;
     padding: 0;
 }
@@ -63,8 +64,7 @@ body {
     line-height: 360%;
 } 
 
-.container .findContainer {
-    
+.container .findContainer {  
     position: relative;
     width: 80%;
     text-align: center;
@@ -80,7 +80,6 @@ body {
     margin-right: 10px;
     margin-top: 5px;
     border-radius: 50px;
-    border: none;
     cursor: pointer;
     font-weight: bolder;
     font-size: 20px;
@@ -104,7 +103,7 @@ body {
     width: 100%;
 }
 
-.btn {
+.btn, .btn-clear {
     display: block;
     width: 100px;
     height: 50px;

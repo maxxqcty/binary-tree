@@ -10,34 +10,37 @@
     <title> Binary Tree Generator </title>
 </head>
 
- <body>
-        <div class="logo"></div>
-        <div class="container">
-            <div class="header">
-                <h1>BINARY TREE</h1>
-                <p>A data structure for hierarchical relationships</p>
-            </div>
-
-            <div class="findContainer"></div>
-            -
-            <textarea
-                oninput="action()"
-                type="number"
-                id="inp"
-                cols="30"
-                rows="10"
-                placeholder="Enter nodes separated by a space..."
-            ></textarea>
-            <div class="btn-container">
-               
-
-                <button class="btn" disabled onclick="toggleLock()">FIND NODE</button>
-            </div>
-            <div class="dsplay" id="treeDepthDisplay"></div>
-            <div class="dsplay" id="pathDisplay"></div>
-            <div class="box graph" id="tree"></div>
+<body>
+    <div class="logo"></div>
+    <div class="container">
+        <div class="header">
+            <h1>BINARY TREE</h1>
+            <p>A data structure for hierarchical relationships</p>
         </div>
-    </body>
+
+        <div class="findContainer"></div>
+        -
+        <textarea
+            oninput="action()"
+            type="number"
+            id="inp"
+            cols="30"
+            rows="10"
+            placeholder="Enter nodes separated by a space..."
+        ></textarea>
+        <div class="btn-container">
+            <button class="btn-clear" onclick="clearAndCreate()">
+                RESET
+            </button>
+            <button class="btn" disabled onclick="toggleLock()">FIND NODE</button>
+        </div>
+        <div class="dsplay" id="pathDisplay"></div>
+        <div class="dsplay" id="treeDepthDisplay"></div>
+        <div class="box graph" id="tree"></div>
+      
+        
+    </div>
+</body>
     <script src="/js/index.js"></script>
     <script src="/js/binaryTree.js"></script>
     <script src="/js/draw.js"></script>

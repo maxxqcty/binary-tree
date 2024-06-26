@@ -15,7 +15,7 @@ function getInput() {
 
 function action() {
     getRoot();
-    const el = document.querySelector("#tree");
+    const el = document.querySelector("#tree")
 }
 
 function getRoot() {
@@ -43,59 +43,66 @@ function clear(el) {
 }
 
 function toggleLock() {
-  let btn = document.querySelector(".btn");
-  let inp = document.getElementById("inp");
-  let cont = document.querySelector(".findContainer");
+    let btn = document.querySelector(".btn");
+    let inp = document.getElementById("inp");
+    let btn_click = document.querySelector(".btn-clear");
+    let cont = document.querySelector(".findContainer");
 
-  if (btn.innerHTML == "FIND NODE") {
-      btn.innerHTML = "BACK";
-      clearAndCreate();
-      inp.style.display = "none";
-  } else {
-      cont.innerHTML = "";
-      inp.style.display = "block";
-      btn.innerHTML = "FIND NODE";
+    if (btn.innerHTML == "FIND NODE") {
+        btn.innerHTML = "BACK";
+        clearAndCreate();
+    } else {
+        cont.innerHTML = "";
+        inp.style.display = "block";
+        btn_click.style.display = "none";
+        btn.innerHTML = "FIND NODE";
 
-      let circles = document.querySelectorAll(".node");
-      let links = document.querySelectorAll(".link");
-      links.forEach((link) => {
-          link.style.stroke = "";
-      });
-      circles.forEach((circle, i) => {
-          setTimeout(() => {
-              circle.firstChild.classList.remove("green");
-              circle.firstChild.classList.remove("gold");
-              circle.firstChild.classList.remove("red");
-          }, i * 100);
-      });
-      hidePathDisplay();
-  }
+        let circles = document.querySelectorAll(".node");
+        let links = document.querySelectorAll(".link");
+        links.forEach((link) => {
+            link.style.stroke = "";
+        });
+        circles.forEach((circle, i) => {
+            setTimeout(() => {
+                circle.firstChild.classList.remove("green");
+                circle.firstChild.classList.remove("gold");
+                circle.firstChild.classList.remove("red");
+            }, i * 100);
+        });
+        hidePathDisplay();
+    }
 }
 
-
 function clearAndCreate() {
-  let inp = document.getElementById("inp");
-  let cont = document.querySelector(".findContainer");
-  cont.innerHTML = ""; // Clear existing containers
+    let inp = document.getElementById("inp");
+    let btn_click = document.querySelector(".btn-clear");
+    let cont = document.querySelector(".findContainer");
+    document.querySelector(".findContainer").innerHTML = "";
 
-  let result = getInput();
-  result = result.filter((item) => item !== "");
+    let result = getInput();
+    result = result.filter((item) => item !== "");
 
-  result.forEach((circle) => {
-      let root = getRoot()[0];
-      let el = document.createElement("button");
-      el.classList.add("numContainer");
-      el.innerHTML = circle;
-      el.style.transition = "1s";
-      el.onclick = function () {
-          clear(el);
-          
-          findTheNode(root, el);
-      };
-      cont.appendChild(el);
-  });
+    result = [...new Set(result)];
 
-  hidePathDisplay();
+    if (result.length > 0) {
+        inp.style.display = "none";
+        btn_click.style.display = "block";
+    }
+
+    result.forEach((circle) => {
+        let root = getRoot()[0];
+        let el = document.createElement("button");
+        el.classList.add("numContainer");
+        el.innerHTML = circle;
+        el.style.transition = "1s";
+        el.onclick = function () {
+            clear(el);
+            findTheNode(root, el);
+        };
+        cont.appendChild(el);
+    });
+
+    hidePathDisplay();
 }
 function findTheNode(root, node, path = "", direction = "") {
     let value = parseFloat(node.innerHTML);
@@ -104,11 +111,9 @@ function findTheNode(root, node, path = "", direction = "") {
     links.forEach((link) => {
         link.style.stroke = "";
     });
-
-    
     // Highlight the current node
     fillToColor(root.value, root.value == value ? "green" : "gold");
-    console.log(root.value);
+console.log(root.value);
     // Append current node to the path
     if (path === "") {
         path = "Root [" + root.value + "]";
@@ -145,7 +150,6 @@ function displayPath(path, node) {
     let pathDisplay = document.getElementById("pathDisplay");
     pathDisplay.textContent = "Node Path: " + path;
 
-    
     // Highlight the links (paths) in the displayed path
     let pathNodes = path.split(" >> ");
     pathNodes.forEach((pathNode) => {
@@ -162,6 +166,7 @@ function displayPath(path, node) {
         });
     });
 }
+
 function hidePathDisplay() {
     document.getElementById("pathDisplay").textContent = "";
 }
@@ -181,6 +186,7 @@ function fillToColor(value, color) {
             }, i * 80);
         }
     });
+
     // Apply color to the specific path links
     let links = document.querySelectorAll(".link");
 
